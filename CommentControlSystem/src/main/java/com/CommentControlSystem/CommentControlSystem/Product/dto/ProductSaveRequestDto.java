@@ -1,9 +1,10 @@
 package com.CommentControlSystem.CommentControlSystem.Product.dto;
 
 import com.CommentControlSystem.CommentControlSystem.General.enums.StatusType;
+import lombok.Data;
 
 import java.math.BigDecimal;
-
+@Data
 public class ProductSaveRequestDto {
     private String name;
     private String description;
