@@ -9,6 +9,10 @@ import com.CommentControlSystem.CommentControlSystem.Product.service.entityServi
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -17,6 +21,37 @@ public class ProductService {
     public ProductDto save(ProductSaveRequestDto requestDto) {
         Product product = ProductMapper.INSTANCE.convertToProduct(requestDto);
         product.setStatusType(StatusType.ACTIVE);
+
+        product = productEntityService.save(product);
+
+        ProductDto productDto = ProductMapper.INSTANCE.convertToProductDto(product);
+
+        return productDto;
+    }
+
+    public List<ProductDto> findAll() {
+        List<Product> products = productEntityService.findAll();
+
+        return ProductMapper.INSTANCE.convertToProductDtoList(products);
+    }
+
+    public ProductDto findById(Long id) {
+       Product product = productEntityService.getByIdWithControl(id);
+
+       ProductDto productDto = ProductMapper.INSTANCE.convertToProductDto(product);
+
+        return productDto;
+    }
+
+    public void delete(Long id) {
+        Product product = productEntityService.getByIdWithControl(id);
+
+        productEntityService.delete(product);
+    }
+
+    public ProductDto updateProductPrice(Long id, BigDecimal price) {
+        Product product = productEntityService.getByIdWithControl(id);
+        product.setPrice(price);
 
         product = productEntityService.save(product);
 
