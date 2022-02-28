@@ -14,5 +14,5 @@ public interface  ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
     ProductDto convertToProductDto(Product product);
     Product convertToProduct(ProductSaveRequestDto productSaveRequestDto);
-//    List<Product> convertToProductDtoList(ProductDto productDto);
+    List<ProductDto> convertToProductDtoList(List<Product> productDto);
 }

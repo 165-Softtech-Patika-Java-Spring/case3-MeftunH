@@ -6,10 +6,9 @@ import com.CommentControlSystem.CommentControlSystem.Product.dto.ProductSaveRequ
 import com.CommentControlSystem.CommentControlSystem.Product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -22,5 +21,23 @@ public class ProductController {
         ProductDto productDto = productService.save(productDTO);
         return ResponseEntity
                 .ok(RestResponse.of(productDto));
+    }
+    @GetMapping
+    public ResponseEntity getAllProducts() {
+        List<ProductDto> productDtoList = productService.findAll();
+        return ResponseEntity.
+                ok(RestResponse.of(productDtoList));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity getProduct(@PathVariable Long id) {
+        ProductDto productDto = productService.findById(id);
+        return ResponseEntity.
+                ok(RestResponse.of(productDto));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteProduct(@PathVariable Long id) {
+        productService.delete(id);
+        return ResponseEntity.
+                ok(RestResponse.empty());
     }
 }
