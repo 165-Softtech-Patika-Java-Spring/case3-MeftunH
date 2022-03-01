@@ -2,6 +2,7 @@ package com.CommentControlSystem.CommentControlSystem.User.entity;
 
 import com.CommentControlSystem.CommentControlSystem.General.entity.BaseEntity;
 import com.CommentControlSystem.CommentControlSystem.User.annotations.UniqueEmail;
+import com.CommentControlSystem.CommentControlSystem.User.enums.UserType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +18,8 @@ import javax.validation.constraints.Pattern;
 @Setter
 public class User extends BaseEntity {
     @Id
-    @SequenceGenerator(name = "Users", sequenceName = "USERS_ID_SEQ",allocationSize = 1)
-    @GeneratedValue(generator = "Users")
+    @SequenceGenerator(name = "Users", sequenceName = "USERS_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Users")
     private Long id;
 
     @Column(name = "NAME", nullable = false, length = 50)
@@ -40,6 +41,10 @@ public class User extends BaseEntity {
 
     @Column(name = "PASSWORD", nullable = false, length = 50)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "USER_TYPE", length = 30)
+    private UserType userType;
 
 }
 
