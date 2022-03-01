@@ -2,9 +2,13 @@ package com.CommentControlSystem.CommentControlSystem.User.dto;
 
 import com.CommentControlSystem.CommentControlSystem.User.annotations.UniqueEmail;
 import com.CommentControlSystem.CommentControlSystem.User.annotations.UniqueNickName;
+import com.CommentControlSystem.CommentControlSystem.User.annotations.UniquePhone;
+import com.CommentControlSystem.CommentControlSystem.User.enums.UserType;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -29,8 +33,12 @@ public class UserSaveRequestDto {
     private String nickname;
 
     @Valid
-    @Pattern(regexp="^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$", message = "Phone number is not valid")
+    @UniquePhone
+    @Pattern(regexp="^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$", message = "Phone number not valid")
     private String phoneNumber;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 }
