@@ -48,6 +48,7 @@ public class ProductService {
         productEntityService.delete(product);
     }
 
+
     public ProductDto updateProductPrice(Long id, BigDecimal price) {
         Product product = productEntityService.getByIdWithControl(id);
         product.setPrice(price);

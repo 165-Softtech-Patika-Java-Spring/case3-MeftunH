@@ -15,4 +15,12 @@ public class CommentControllerAdvice {
         UserHasNotCommentResponse response = new UserHasNotCommentResponse(se.getMessage());
         return response;
     }
+
+    @ExceptionHandler(ProductHasNotCommentException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ProductHasNotCommentResponse handleSecurityException(ProductHasNotCommentException se) {
+        ProductHasNotCommentResponse response = new ProductHasNotCommentResponse(se.getMessage());
+        return response;
+    }
 }

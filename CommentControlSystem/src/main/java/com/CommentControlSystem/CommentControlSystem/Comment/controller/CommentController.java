@@ -2,6 +2,7 @@ package com.CommentControlSystem.CommentControlSystem.Comment.controller;
 
 import com.CommentControlSystem.CommentControlSystem.Comment.dto.CommentDto;
 import com.CommentControlSystem.CommentControlSystem.Comment.dto.CommentSaveRequestDto;
+import com.CommentControlSystem.CommentControlSystem.Comment.exception.ProductHasNotComment;
 import com.CommentControlSystem.CommentControlSystem.Comment.exception.UserHasNotCommentException;
 import com.CommentControlSystem.CommentControlSystem.Comment.service.CommentService;
 import com.CommentControlSystem.CommentControlSystem.General.dto.RestResponse;
@@ -39,6 +40,12 @@ public class CommentController {
     @GetMapping("/user/{user_id}")
     public ResponseEntity getUserComments(@PathVariable("user_id") @ApiParam(name = "user_id", value = "User id", example = "1") Long user_id)  throws UserHasNotCommentException {
         List<CommentDto> commentDto = commentService.findByUserId(user_id);
+        return ResponseEntity
+                .ok(RestResponse.of(commentDto));
+    }
+    @GetMapping("/product/{product_id}")
+    public ResponseEntity getProductComments(@PathVariable("product_id") @ApiParam(name = "product_id", value = "Product id", example = "1") Long product_id) throws ProductHasNotComment {
+        List<CommentDto> commentDto = commentService.findByProductId(product_id);
         return ResponseEntity
                 .ok(RestResponse.of(commentDto));
     }

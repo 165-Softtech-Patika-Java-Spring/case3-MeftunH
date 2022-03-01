@@ -16,4 +16,8 @@ public class CommentEntityService extends BaseEntityService<Comment, CommentDao>
     public List<Comment> findByUserId(Long idUser){
         return getDao().findByUserId(idUser);
     }
+    public List<Comment> findByProductId(Long idProduct){
+        return getDao().findByProductId(idProduct);
+    }
+
 }

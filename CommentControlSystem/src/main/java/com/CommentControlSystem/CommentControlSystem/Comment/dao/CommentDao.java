@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CommentDao extends JpaRepository<Comment, Long> {
-    public List<Comment> findByUserId(Long commentId);
+    public List<Comment> findByUserId(Long userId);
+    public List<Comment> findByProductId(Long productId);
 }
