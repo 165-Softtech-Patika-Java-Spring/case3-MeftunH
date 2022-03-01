@@ -19,7 +19,7 @@ public class CommentControllerAdvice {
     @ExceptionHandler(ProductHasNotCommentException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ProductHasNotCommentResponse handleSecurityException(ProductHasNotCommentException se) {
+    public ProductHasNotCommentResponse handleProduct(ProductHasNotCommentException se) {
         ProductHasNotCommentResponse response = new ProductHasNotCommentResponse(se.getMessage());
         return response;
     }
