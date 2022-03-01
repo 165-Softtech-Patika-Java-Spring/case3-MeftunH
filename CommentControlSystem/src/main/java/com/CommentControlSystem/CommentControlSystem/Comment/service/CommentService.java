@@ -47,7 +47,7 @@ public class CommentService {
         List<CommentDto> commentDto = CommentMapper.INSTANCE.convertToCommentDtoList(comments);
         if (commentDto.isEmpty()) {
             User user = userEntityService.getByIdWithControl(id);
-            throw new UserHasNotCommentException(user.getNickname()+"User Has Not Found");
+            throw new UserHasNotCommentException(user.getNickname()+"User Has Not Comment");
         }
         return commentDto;
     }
