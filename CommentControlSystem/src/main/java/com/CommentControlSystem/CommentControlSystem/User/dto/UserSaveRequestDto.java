@@ -4,6 +4,7 @@ import com.CommentControlSystem.CommentControlSystem.User.annotations.UniqueEmai
 import com.CommentControlSystem.CommentControlSystem.User.annotations.UniqueNickName;
 import com.CommentControlSystem.CommentControlSystem.User.annotations.UniquePhone;
 import com.CommentControlSystem.CommentControlSystem.User.enums.UserType;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 
@@ -35,6 +36,7 @@ public class UserSaveRequestDto {
     @Valid
     @UniquePhone
     @Pattern(regexp="^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$", message = "Phone number not valid")
+    @ApiModelProperty(notes = "Phone Number", example = "+1 (331) 213-4567", required = true)
     private String phoneNumber;
 
     private String password;
