@@ -5,6 +5,7 @@ import com.CommentControlSystem.CommentControlSystem.User.dto.UserDto;
 import com.CommentControlSystem.CommentControlSystem.User.dto.UserSaveRequestDto;
 import com.CommentControlSystem.CommentControlSystem.User.dto.UserUpdateRequestDto;
 import com.CommentControlSystem.CommentControlSystem.User.service.UserService;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -72,10 +73,10 @@ public class UserController {
         return ResponseEntity.ok(RestResponse.of(userDto));
     }
 
-    @DeleteMapping("/{nickname}/{phonenumber}")
-    public ResponseEntity delete(@PathVariable String nickname, @PathVariable String phonenumber) {
+    @DeleteMapping("/{nickname}/{phone_number}")
+    public ResponseEntity delete(@PathVariable String nickname, @PathVariable @ApiParam(name = "phonenumber", value = "Phone number", example = "+1 (331) 213-4567") String phone_number) {
 
-        userService.delete(nickname, phonenumber);
+        userService.delete(nickname, phone_number);
 
         return ResponseEntity.ok(RestResponse.empty());
     }
