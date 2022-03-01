@@ -1,8 +1,11 @@
 package com.CommentControlSystem.CommentControlSystem.User.dto;
 
+import com.CommentControlSystem.CommentControlSystem.User.enums.UserType;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
@@ -21,4 +24,6 @@ public class UserDto {
     private String phoneNumber;
 
     private String password;
+
+    private UserType userType;
 }
